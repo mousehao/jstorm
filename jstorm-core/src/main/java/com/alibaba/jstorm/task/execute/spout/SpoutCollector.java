@@ -180,9 +180,10 @@ public class SpoutCollector extends SpoutOutputCollectorCb {
         final long startTime = emitTotalTimer.getTime();
         try {
             boolean needAck = (message_id != null) && (ackerNum > 0);
+            //获取唯一的root_id
             Long root_id = getRootId(message_id);
             List<Integer> outTasks;
-
+            //发送消息
             if (out_task_id != null) {
                 outTasks = sendTargets.get(out_task_id, out_stream_id, values, null, root_id);
             } else {
